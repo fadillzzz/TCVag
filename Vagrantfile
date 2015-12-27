@@ -20,6 +20,5 @@ Vagrant.configure(2) do |config|
     ansible.groups = {
       "app" => ["app"]
     }
-    ansible.verbose = "vv"
   end
 end
