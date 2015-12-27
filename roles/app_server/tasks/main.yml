@@ -1,0 +1,38 @@
+---
+- name: NodeJS prerequisites
+  shell: curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+
+- name: Install NodeJS
+  sudo: yes
+  apt: pkg=nodejs state=latest
+
+- name: Install build tools
+  sudo: yes
+  apt: pkg=build-essential state=latest
+
+- name: Install Forever
+  sudo: yes
+  npm: name=forever global=yes state=latest
+
+- name: Install Gulp
+  sudo: yes
+  npm: name=gulp global=yes
+
+- name: Install Bower
+  sudo: yes
+  npm: name=bower global=yes
+
+- name: Install Git
+  sudo: yes
+  apt: pkg=git state=latest
+
+- name: Install app dependencies
+  npm: path=/var/www/tcp production=no
+
+- name: Install app dependencies (Bower)
+  bower: path=/var/www/tcp
+
+- name: Run app
+  shell: forever -w start app.js
+  args:
+    chdir: /var/www/tcp

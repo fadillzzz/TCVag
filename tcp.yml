@@ -1,0 +1,12 @@
+---
+- name: TCP App
+  hosts: app
+  remote_user: vagrant
+  roles:
+    - app_server
+
+- name: TCP DB
+  hosts: db
+  remote_user: vagrant
+  roles:
+    - db_server

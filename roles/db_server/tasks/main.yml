@@ -1,0 +1,3 @@
+---
+- name: This shouldn't be executed
+  shell: cat /proc/cpuinfo
