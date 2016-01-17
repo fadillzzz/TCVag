@@ -10,9 +10,9 @@
   sudo: yes
   apt: pkg=build-essential state=latest
 
-- name: Install Forever
+- name: Install PM2
   sudo: yes
-  npm: name=forever global=yes state=latest
+  npm: name=pm2 global=yes state=latest
 
 - name: Install Gulp
   sudo: yes
@@ -33,6 +33,6 @@
   bower: path=/var/www/tcp
 
 - name: Run app
-  shell: forever -w start app.js
+  shell: pm2 ecosystem.json
   args:
     chdir: /var/www/tcp
