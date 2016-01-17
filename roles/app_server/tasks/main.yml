@@ -33,6 +33,6 @@
   bower: path=/var/www/tcp
 
 - name: Run app
-  shell: pm2 ecosystem.json
+  shell: pm2 start ecosystem.json
   args:
     chdir: /var/www/tcp
