@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
   config.vm.define "app" do |app|
     app.vm.box = "ubuntu/trusty64"
-    app.vm.synced_folder "../tcp", "/var/www/tcp", type: "rsync", rsync__exclude: ".git/"
+    app.vm.synced_folder "../tcp", "/var/www/tcp", type: "nfs"
 
     app.vm.provider "virtualbox" do |vb|
       vb.cpus = 2
