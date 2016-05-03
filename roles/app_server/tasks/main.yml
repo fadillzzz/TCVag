@@ -30,34 +30,14 @@
 - name: Update Sails
   npm: name=sails global=yes state=latest
 
-# temporary workaround (https://github.com/ansible/ansible-modules-extras/issues/1375#issuecomment-186512824)
-- name: Install Gulp
-  npm: name=gulp global=yes state=present
-
-- name: Update Gulp
-  npm: name=gulp global=yes state=latest
-
-# temporary workaround (https://github.com/ansible/ansible-modules-extras/issues/1375#issuecomment-186512824)
-- name: Install Bower
-  npm: name=bower global=yes state=present
-
-- name: Update Bower
-  npm: name=bower global=yes state=latest
-
 - name: Install Git
   become: yes
   apt: pkg=git state=latest
 
 - name: Install app dependencies
-  npm: path=/var/www/tcp production=no
-
-- name: Install app dependencies (Bower)
-# bower: path=/var/www/tcp (https://github.com/ansible/ansible-modules-extras/issues/956)
-  shell: PATH=~/.npm-global/bin:$PATH && bower install
-  args:
-    chdir: /var/www/tcp
+  npm: path=/var/www/api production=no
 
 - name: Run app
   shell: PATH=~/.npm-global/bin:$PATH && pm2 start ecosystem.json
   args:
-    chdir: /var/www/tcp
+    chdir: /var/www/api
